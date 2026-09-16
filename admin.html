@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Administrare recenzii | DEP Medical</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f8fa;
+      color: #163247;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, #075c78, #07879b);
+      color: white;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 0 18px;
+    }
+
+    .login-box,
+    .admin-box {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    }
+
+    .login-box {
+      max-width: 480px;
+      margin: 50px auto;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #087a9d;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 8px 0;
+      border: 1px solid #d5e2e7;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 15px;
+    }
+
+    .login-button {
+      width: 100%;
+      margin-top: 12px;
+      background: #087a9d;
+      color: white;
+      padding: 15px;
+    }
+
+    .logout-button {
+      background: #17324d;
+      color: white;
+    }
+
+    .refresh-button {
+      background: #087a9d;
+      color: white;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .review-card {
+      background: #f8fcfd;
+      border: 1px solid #dcecef;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .review-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #087a9d;
+      margin-bottom: 5px;
+    }
+
+    .stars {
+      color: #f5b400;
+      font-size: 22px;
+      margin: 8px 0;
+    }
+
+    .review-text {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #496270;
+      white-space: pre-wrap;
+    }
+
+    .status {
+      display: inline-block;
+      margin: 12px 0;
+      padding: 6px 11px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .pending {
+      background: #fff4ce;
+      color: #8a6500;
+    }
+
+    .approved {
+      background: #daf7e8;
+      color: #167647;
+    }
+
+    .rejected {
+      background: #fde0e0;
+      color: #a82c2c;
+    }
+
+    .review-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .approve {
+      background: #20c997;
+      color: white;
+    }
+
+    .reject {
+      background: #f0a020;
+      color: white;
+    }
+
+    .delete {
+      background: #dc3545;
+      color: white;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 9px;
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      background: #fde5e5;
+      color: #9e2222;
+    }
+
+    .message.success {
+      display: block;
+      background: #dcf7e9;
+      color: #167647;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px 10px;
+      color: #6d7f89;
+    }
+
+    #adminSection {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .topbar h1 {
+        font-size: 23px;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+
+      .login-box,
+      .admin-box {
+        padding: 20px;
+      }
+
+      .review-buttons button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <h1>DEP Medical — Administrare recenzii</h1>
+  </div>
+
+  <div class="container">
+
+    <div id="loginSection" class="login-box">
+
+      <h2>Autentificare administrator</h2>
+
+      <p>
+        Introdu emailul și parola contului de administrator.
+      </p>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+        value="depmedical10@gmail.com"
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Parolă"
+      >
+
+      <button
+        class="login-button"
+        onclick="loginAdmin()"
+      >
+        Autentificare
+      </button>
+
+      <div id="loginMessage" class="message"></div>
+
+    </div>
+
+
+    <div id="adminSection" class="admin-box">
+
+      <div class="admin-header">
+
+        <div>
+          <h2>Recenzii primite</h2>
+          <p id="adminEmail"></p>
+        </div>
+
+        <div class="admin-actions">
+
+          <button
+            class="refresh-button"
+            onclick="incarcaRecenzii()"
+          >
+            Reîncarcă
+          </button>
+
+          <button
+            class="logout-button"
+            onclick="logoutAdmin()"
+          >
+            Ieșire
+          </button>
+
+        </div>
+
+      </div>
+
+      <div id="reviewsContainer">
+        Se încarcă...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+    const SUPABASE_URL =
+      "https://rbwqcbnykuebudbzriva.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_ehgMCXMBs2KD3tq8tL5NVQ_MmY9-H2Q";
+
+    const client =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    async function verificareInitiala() {
+
+      const {
+        data: { session }
+      } = await client.auth.getSession();
+
+      if (session) {
+
+        afiseazaAdmin(session.user);
+
+        await incarcaRecenzii();
+
+      } else {
+
+        afiseazaLogin();
+
+      }
+    }
+
+
+    async function loginAdmin() {
+
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+      const mesaj =
+        document.getElementById(
+          "loginMessage"
+        );
+
+      mesaj.className = "message";
+      mesaj.textContent = "";
+
+
+      const {
+        data,
+        error
+      } =
+        await client.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+
+      if (error) {
+
+        mesaj.className =
+          "message error";
+
+        mesaj.textContent =
+          "Email sau parolă incorectă.";
+
+        return;
+      }
+
+
+      if (
+        !data.user ||
+        data.user.email !==
+        "depmedical10@gmail.com"
+      ) {
+
+        await client.auth.signOut();
+
+        mesaj.className =
+          "message error";
+
+        mesaj.textContent =
+          "Acest cont nu are acces la administrare.";
+
+        return;
+      }
+
+
+      afiseazaAdmin(data.user);
+
+      await incarcaRecenzii();
+    }
+
+
+    function afiseazaAdmin(user) {
+
+      document.getElementById(
+        "loginSection"
+      ).style.display = "none";
+
+      document.getElementById(
+        "adminSection"
+      ).style.display = "block";
+
+      document.getElementById(
+        "adminEmail"
+      ).textContent =
+        "Conectat ca: " + user.email;
+    }
+
+
+    function afiseazaLogin() {
+
+      document.getElementById(
+        "adminSection"
+      ).style.display = "none";
+
+      document.getElementById(
+        "loginSection"
+      ).style.display = "block";
+    }
+
+
+    async function logoutAdmin() {
+
+      await client.auth.signOut();
+
+      afiseazaLogin();
+
+      document.getElementById(
+        "password"
+      ).value = "";
+    }
+
+
+    async function incarcaRecenzii() {
+
+      const container =
+        document.getElementById(
+          "reviewsContainer"
+        );
+
+      container.innerHTML =
+        "Se încarcă recenziile...";
+
+
+      const {
+        data,
+        error
+      } =
+        await client
+          .from("reviews")
+          .select("*")
+          .order(
+            "created_at",
+            { ascending: false }
+          );
+
+
+      if (error) {
+
+        container.innerHTML =
+          "<div class='empty'>Eroare la încărcarea recenziilor.<br>" +
+          escapeHtml(error.message) +
+          "</div>";
+
+        return;
+      }
+
+
+      if (!data || data.length === 0) {
+
+        container.innerHTML =
+          "<div class='empty'>Nu există încă recenzii.</div>";
+
+        return;
+      }
+
+
+      container.innerHTML = "";
+
+
+      data.forEach(function(review) {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "review-card";
+
+
+        const stele =
+          "★".repeat(review.rating) +
+          "☆".repeat(5 - review.rating);
+
+
+        card.innerHTML = `
+          <div class="review-name">
+            ${escapeHtml(review.name)}
+          </div>
+
+          <div class="stars">
+            ${stele}
+          </div>
+
+          <div class="review-text">
+            ${escapeHtml(review.review_text)}
+          </div>
+
+          <div class="status ${review.status}">
+            ${textStatus(review.status)}
+          </div>
+
+          <div class="review-buttons">
+
+            <button
+              class="approve"
+              onclick="schimbaStatus('${review.id}', 'approved')"
+            >
+              ✓ Aprobă
+            </button>
+
+            <button
+              class="reject"
+              onclick="schimbaStatus('${review.id}', 'rejected')"
+            >
+              ✕ Respinge
+            </button>
+
+            <button
+              class="delete"
+              onclick="stergeRecenzie('${review.id}')"
+            >
+              Șterge
+            </button>
+
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+
+    function textStatus(status) {
+
+      if (status === "approved") {
+        return "Aprobată";
+      }
+
+      if (status === "rejected") {
+        return "Respinsă";
+      }
+
+      return "În așteptare";
+    }
+
+
+    async function schimbaStatus(
+      id,
+      status
+    ) {
+
+      const {
+        error
+      } =
+        await client
+          .from("reviews")
+          .update({
+            status: status
+          })
+          .eq("id", id);
+
+
+      if (error) {
+
+        alert(
+          "Nu am putut modifica recenzia: " +
+          error.message
+        );
+
+        return;
+      }
+
+
+      await incarcaRecenzii();
+    }
+
+
+    async function stergeRecenzie(id) {
+
+      const confirmare =
+        confirm(
+          "Sigur vrei să ștergi definitiv această recenzie?"
+        );
+
+
+      if (!confirmare) {
+        return;
+      }
+
+
+      const {
+        error
+      } =
+        await client
+          .from("reviews")
+          .delete()
+          .eq("id", id);
+
+
+      if (error) {
+
+        alert(
+          "Nu am putut șterge recenzia: " +
+          error.message
+        );
+
+        return;
+      }
+
+
+      await incarcaRecenzii();
+    }
+
+
+    function escapeHtml(text) {
+
+      const div =
+        document.createElement("div");
+
+      div.textContent =
+        text ?? "";
+
+      return div.innerHTML;
+    }
+
+
+    verificareInitiala();
+  </script>
+
+</body>
+</html>
