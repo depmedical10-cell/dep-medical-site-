@@ -2,7 +2,6 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Îngrijire medicală la domiciliu București și Ilfov | DEP Medical</title>
@@ -16,59 +15,17 @@
   <meta name="author" content="DEP Medical">
   <meta name="theme-color" content="#087a9d">
 
-  <!-- FAVICON -->
   <link rel="icon" type="image/jpeg" href="favicon-final.jpeg.jpeg">
   <link rel="shortcut icon" type="image/jpeg" href="favicon-final.jpeg.jpeg">
   <link rel="apple-touch-icon" href="favicon-final.jpeg.jpeg">
 
-  <!-- SOCIAL -->
-  <meta property="og:type" content="website">
-
-  <meta
-    property="og:title"
-    content="DEP Medical | Îngrijire medicală la domiciliu"
-  >
-
-  <meta
-    property="og:description"
-    content="Îngrijire medicală la domiciliu în București și Ilfov, oferită de personal medical calificat, cu experiență în geriatrie, gerontologie și îngrijirea persoanelor vârstnice."
-  >
-
-  <meta property="og:locale" content="ro_RO">
-  <meta property="og:site_name" content="DEP Medical">
-
-  <!-- GOOGLE STRUCTURED DATA -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "DEP Medical",
-    "description": "Servicii de îngrijire medicală la domiciliu în București și Ilfov.",
-    "telephone": "+40761802133",
-    "email": "depmedical10@gmail.com",
-    "areaServed": [
-      "București",
-      "Ilfov"
-    ],
-    "knowsAbout": [
-      "Îngrijire medicală la domiciliu",
-      "Geriatrie",
-      "Gerontologie",
-      "Îngrijirea persoanelor vârstnice",
-      "Perfuzii",
-      "Injecții",
-      "Monitorizare",
-      "Pansamente"
-    ]
-  }
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
@@ -78,60 +35,36 @@
     body {
       font-family: Arial, sans-serif;
       background: #f5fafc;
-      color: #163247;
+      color: #17324d;
       overflow-x: hidden;
     }
 
-    body.menu-open {
-      overflow: hidden;
-    }
-
-
-    /* HEADER */
-
     header {
-      background: white;
       position: sticky;
       top: 0;
       z-index: 1000;
+      background: white;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
 
     .nav {
-      width: 100%;
-      min-height: 105px;
-      padding: 8px 24px;
+      min-height: 100px;
+      padding: 8px 5%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 20px;
       position: relative;
     }
 
-
-    /* LOGO REPARAT */
-
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex-shrink: 0;
-    }
-
     .logo img {
-      height: 95px;
-      width: auto;
+      height: 88px;
       display: block;
-      object-fit: contain;
     }
-
-
-    /* MENIU */
 
     nav {
       display: flex;
-      gap: 18px;
-      align-items: center;
-      margin-right: 10px;
+      gap: 14px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
@@ -139,120 +72,95 @@
     nav a {
       text-decoration: none;
       color: #17324d;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 14px;
-      transition: 0.2s;
     }
 
     nav a:hover {
-      color: #0a8da7;
+      color: #087a9d;
     }
 
-    .menu-button {
+    .menu {
       display: none;
-      border: none;
       background: #087a9d;
       color: white;
+      border: 0;
+      border-radius: 10px;
       width: 48px;
       height: 48px;
-      border-radius: 12px;
       font-size: 26px;
       cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
     }
 
-
-    /* HERO */
-
     .hero {
-      min-height: 78vh;
       display: grid;
       grid-template-columns: 46% 54%;
+      min-height: 75vh;
       background: linear-gradient(135deg, #075c78, #07879b);
     }
 
     .hero-text {
+      padding: 70px 9%;
       color: white;
-      padding: 70px 8%;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
     .hero-text small {
-      color: #93f3df;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
+      color: #9cf3df;
+      font-weight: 700;
+      margin-bottom: 15px;
     }
 
     .hero-text h1 {
-      font-size: 53px;
+      font-size: 52px;
       line-height: 1.08;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .hero-text p {
-      color: #e5f6f8;
-      font-size: 20px;
+      font-size: 19px;
       line-height: 1.6;
-    }
-
-    .hero-image {
-      min-height: 78vh;
-      overflow: hidden;
+      color: #e7f7f9;
     }
 
     .hero-image img {
       width: 100%;
       height: 100%;
-      min-height: 78vh;
+      min-height: 75vh;
       object-fit: cover;
-      object-position: center;
-      display: block;
     }
 
-
-    /* BUTOANE */
-
-    .button {
+    .btn {
       display: inline-block;
       align-self: flex-start;
-      margin-top: 28px;
-      padding: 16px 28px;
+      margin-top: 25px;
+      padding: 15px 25px;
+      border: 0;
+      border-radius: 30px;
       background: #20cea9;
       color: white;
-      border-radius: 35px;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 17px;
-      transition: 0.2s;
-      text-align: center;
-      border: none;
+      font-weight: 700;
       cursor: pointer;
     }
 
-    .button:hover {
+    .btn:hover {
       background: #18b995;
-      transform: translateY(-2px);
     }
 
-
-    /* BENEFICII */
-
     .benefits {
-      background: white;
-      padding: 35px 6%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      padding: 35px 6%;
+      background: white;
     }
 
     .benefit {
       text-align: center;
-      padding: 20px;
+      padding: 18px;
     }
 
     .benefit h3 {
@@ -260,40 +168,35 @@
       margin-bottom: 8px;
     }
 
-    .benefit p {
-      color: #687b87;
-      line-height: 1.5;
+    .benefit p,
+    .muted {
+      color: #667b87;
+      line-height: 1.6;
     }
 
-
-    /* SECTIUNI */
-
-    section.content {
-      padding: 80px 6%;
+    section {
+      padding: 75px 6%;
     }
 
     .title {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 40px;
     }
 
     .title h2 {
-      font-size: 40px;
+      font-size: 38px;
       margin-bottom: 10px;
     }
 
     .title p {
+      max-width: 850px;
+      margin: auto;
       color: #687b87;
       font-size: 18px;
       line-height: 1.5;
-      max-width: 850px;
-      margin: auto;
     }
 
-
-    /* SERVICII */
-
-    .services {
+    .grid4 {
       max-width: 1150px;
       margin: auto;
       display: grid;
@@ -303,110 +206,81 @@
 
     .card {
       background: white;
+      padding: 28px 22px;
       border-radius: 18px;
-      padding: 30px 22px;
-      text-align: center;
       box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
+      text-align: center;
     }
 
     .card .icon {
-      font-size: 40px;
-      margin-bottom: 14px;
+      font-size: 38px;
+      margin-bottom: 12px;
     }
 
     .card h3 {
       margin-bottom: 10px;
     }
 
-    .card p {
-      color: #687b87;
-      line-height: 1.5;
-    }
-
-
-    /* TARIFE */
-
-    .prices-section {
+    .prices {
       background: #edf8fb;
     }
 
-    .price-category {
+    .category {
       max-width: 1100px;
-      margin: 0 auto 45px;
+      margin: 0 auto 40px;
     }
 
-    .price-category h3 {
+    .category h3 {
       font-size: 28px;
       color: #087a9d;
-      margin-bottom: 10px;
-    }
-
-    .category-note {
-      color: #657985;
-      margin-bottom: 22px;
-      line-height: 1.5;
+      margin-bottom: 8px;
     }
 
     .price-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 14px;
+      margin-top: 18px;
     }
 
     .price-row {
       background: white;
+      padding: 18px;
       border-radius: 14px;
-      padding: 18px 20px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 14px;
+      gap: 12px;
       align-items: center;
       box-shadow: 0 5px 18px rgba(0,0,0,0.05);
     }
 
     .price-name {
       font-weight: 700;
-      color: #28465a;
-      line-height: 1.4;
     }
 
-    .service-price {
-      color: #087a9d;
-      font-size: 18px;
+    .price {
       font-weight: 800;
+      color: #087a9d;
       white-space: nowrap;
     }
 
-    .service-request {
+    .request {
       grid-column: 1 / 3;
       justify-self: start;
-      border: none;
+      border: 0;
       background: #20cea9;
       color: white;
-      padding: 11px 18px;
+      padding: 10px 17px;
       border-radius: 25px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
-      font-size: 15px;
-    }
-
-    .service-request:hover {
-      background: #18b995;
-    }
-
-
-    /* PACHETE */
-
-    .packages-section {
-      background: white;
     }
 
     .packages {
+      background: white;
+    }
+
+    .package-grid {
       max-width: 1150px;
       margin: auto;
       display: grid;
@@ -417,83 +291,46 @@
     .package {
       background: #f8fcfd;
       border-radius: 20px;
-      padding: 34px;
+      padding: 32px;
       box-shadow: 0 10px 28px rgba(0,0,0,0.08);
     }
 
     .package.featured {
       border: 2px solid #20caa7;
-      transform: translateY(-8px);
-      background: white;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #dff8f2;
-      color: #0d8c75;
-      padding: 7px 13px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 16px;
     }
 
     .package h3 {
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: 27px;
+      margin: 10px 0;
     }
 
-    .price {
-      font-size: 38px;
-      font-weight: bold;
+    .package .big {
+      font-size: 36px;
       color: #087a9d;
-      margin-bottom: 6px;
-    }
-
-    .price span {
-      font-size: 16px;
-      font-weight: normal;
-      color: #697b88;
-    }
-
-    .package-info {
-      color: #687b87;
-      margin-bottom: 22px;
-      line-height: 1.5;
+      font-weight: 800;
     }
 
     .package ul {
       list-style: none;
-      margin: 22px 0;
+      margin: 20px 0;
     }
 
     .package li {
-      margin: 12px 0;
+      margin: 11px 0;
       color: #445d6d;
-      line-height: 1.4;
     }
 
     .package li::before {
-      content: "✓";
+      content: "✓ ";
       color: #20caa7;
-      font-weight: bold;
-      margin-right: 9px;
-    }
-
-    .package .button {
-      width: 100%;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-
-    /* CUM FUNCTIONEAZA */
-
-    .how-section {
-      background: #edf8fb;
+      font-weight: 700;
     }
 
     .steps {
+      background: #edf8fb;
+    }
+
+    .step-grid {
       max-width: 1050px;
       margin: auto;
       display: grid;
@@ -503,69 +340,56 @@
 
     .step {
       background: white;
-      border-radius: 20px;
-      padding: 32px;
+      padding: 30px;
+      border-radius: 18px;
       text-align: center;
     }
 
-    .step-number {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 18px;
+    .num {
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       background: #20cea9;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      margin: 0 auto 15px;
       font-size: 24px;
+      font-weight: 700;
     }
-
-    .step h3 {
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      color: #687b87;
-      line-height: 1.5;
-    }
-
-
-    /* DESPRE */
 
     .about {
       background: white;
     }
 
-    .about-wrap {
+    .about-grid {
       max-width: 1050px;
       margin: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 30px;
+      gap: 28px;
     }
 
-    .about-box {
+    .box {
       background: #eff9fb;
-      padding: 35px;
-      border-radius: 20px;
+      padding: 32px;
+      border-radius: 18px;
     }
 
-    .about-box h2 {
-      margin-bottom: 15px;
+    .box h2 {
+      margin-bottom: 14px;
     }
 
-    .about-box p {
+    .box p {
       color: #657985;
       line-height: 1.7;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
     .check {
-      margin: 10px 0;
-      font-weight: bold;
-      line-height: 1.4;
+      margin: 9px 0;
+      font-weight: 700;
     }
 
     .check::before {
@@ -573,53 +397,134 @@
       color: #20c8a5;
     }
 
-
-    /* TESTIMONIALE */
-
-    .testimonials-section {
+    .reviews {
       background: #edf8fb;
     }
 
-    .testimonials {
+    .review-grid {
       max-width: 1100px;
       margin: auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 22px;
     }
 
-    .testimonial {
+    .review-card {
       background: white;
-      padding: 30px;
-      border-radius: 20px;
+      padding: 28px;
+      border-radius: 18px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     }
 
     .stars {
       color: #f5b400;
-      font-size: 21px;
-      margin-bottom: 15px;
+      font-size: 22px;
+      margin-bottom: 12px;
     }
 
-    .testimonial p {
+    .review-card p {
       color: #5d7280;
       line-height: 1.6;
       font-style: italic;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      white-space: pre-wrap;
     }
 
-    .testimonial strong {
-      color: #087a9d;
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #687b87;
+      padding: 25px;
     }
 
-
-    /* FAQ */
-
-    .faq-section {
+    .review-form-section {
       background: white;
     }
 
+    .review-box {
+      max-width: 750px;
+      margin: auto;
+      background: #f2fafc;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    }
+
+    .review-box label {
+      display: block;
+      font-weight: 700;
+      margin: 0 0 7px;
+    }
+
+    .review-box input,
+    .review-box textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d6e6eb;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .review-box textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .star-pick {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .star-btn {
+      border: 0;
+      background: transparent;
+      color: #c9d1d5;
+      font-size: 38px;
+      cursor: pointer;
+    }
+
+    .star-btn.active {
+      color: #f5b400;
+    }
+
+    .review-submit {
+      width: 100%;
+      border: 0;
+      background: #20cea9;
+      color: white;
+      padding: 15px;
+      border-radius: 30px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .msg {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 9px;
+    }
+
+    .msg.ok {
+      display: block;
+      background: #dcf7e9;
+      color: #167647;
+    }
+
+    .msg.err {
+      display: block;
+      background: #fde4e4;
+      color: #a62828;
+    }
+
     .faq {
+      background: white;
+    }
+
+    .faq-wrap {
       max-width: 900px;
       margin: auto;
     }
@@ -627,186 +532,137 @@
     details {
       background: #f4fafc;
       border-radius: 12px;
-      margin-bottom: 14px;
-      padding: 18px 20px;
+      padding: 17px 20px;
+      margin-bottom: 13px;
     }
 
     summary {
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
-      color: #17324d;
-      font-size: 17px;
-      line-height: 1.4;
     }
 
     details p {
-      margin-top: 13px;
+      margin-top: 12px;
       color: #657985;
       line-height: 1.6;
     }
 
-
-    /* FORMULARE */
-
-    .evaluation,
-    .custom-offer {
+    .dark {
       background: linear-gradient(135deg, #064d69, #087d91);
       color: white;
     }
 
-    .evaluation-wrap,
-    .offer-wrap {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .evaluation .title p,
-    .custom-offer .title p {
+    .dark .title p {
       color: #d8f1f4;
     }
 
-    form {
+    .form {
+      max-width: 900px;
+      margin: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 15px;
     }
 
-    input,
-    textarea,
-    select {
+    .form input,
+    .form textarea,
+    .form select {
       width: 100%;
-      padding: 16px;
-      border: none;
+      padding: 15px;
+      border: 0;
       border-radius: 10px;
       font-size: 16px;
-      outline: none;
-      font-family: Arial, sans-serif;
     }
 
-    textarea {
-      min-height: 130px;
+    .form textarea,
+    .form button {
+      grid-column: 1 / 3;
+    }
+
+    .form textarea {
+      min-height: 120px;
       resize: vertical;
-      grid-column: 1 / 3;
     }
 
-    form button {
-      grid-column: 1 / 3;
-      border: none;
-      border-radius: 35px;
-      padding: 17px;
+    .form button {
+      border: 0;
       background: #20cea9;
       color: white;
+      padding: 16px;
+      border-radius: 30px;
       font-size: 17px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
     }
 
-    form button:hover {
-      background: #18b995;
-    }
-
-
-    /* CONTACT */
-
     .contact {
-      background: white;
       text-align: center;
+      background: white;
     }
 
     .contact p {
       margin: 10px;
       color: #647783;
       font-size: 18px;
-      line-height: 1.5;
     }
 
     .contact a {
       color: #087a9d;
+      font-weight: 700;
       text-decoration: none;
-      font-weight: bold;
     }
-
-
-    /* FOOTER */
 
     footer {
-      padding: 28px 20px;
-      text-align: center;
       background: #062f40;
       color: #d0e1e7;
-      line-height: 1.5;
+      text-align: center;
+      padding: 27px;
     }
 
-
-    /* WHATSAPP */
-
-    .whatsapp {
+    .wa {
       position: fixed;
-      right: 24px;
-      bottom: 24px;
-      width: 62px;
-      height: 62px;
+      right: 22px;
+      bottom: 22px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: #25D366;
+      background: #25d366;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      font-size: 30px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      font-size: 29px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
       z-index: 1000;
     }
 
-
-    /* TABLETA */
-
-    @media (max-width: 1050px) {
-
-      nav {
-        gap: 12px;
-      }
-
-      nav a {
-        font-size: 13px;
-      }
-
-    }
-
-
-    /* MOBIL */
-
-    @media (max-width: 850px) {
-
+    @media(max-width: 850px) {
       .nav {
-        min-height: 82px;
+        min-height: 80px;
         padding: 6px 14px;
       }
 
       .logo img {
-        height: 70px;
+        height: 68px;
       }
 
-      .menu-button {
-        display: flex;
+      .menu {
+        display: block;
       }
 
       nav {
         display: none;
         position: absolute;
-        top: 82px;
+        top: 80px;
         left: 12px;
         right: 12px;
-        margin: 0;
         background: white;
-        border-radius: 18px;
         padding: 12px;
-        box-shadow: 0 14px 35px rgba(0,0,0,0.16);
+        border-radius: 15px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         flex-direction: column;
         align-items: stretch;
-        gap: 4px;
-        max-height: calc(100vh - 100px);
-        overflow-y: auto;
       }
 
       nav.open {
@@ -814,196 +670,87 @@
       }
 
       nav a {
-        display: block;
-        width: 100%;
-        padding: 14px 15px;
-        border-radius: 10px;
-        font-size: 16px;
-      }
-
-      nav a:hover {
-        background: #eff9fb;
+        padding: 11px;
       }
 
       .hero {
         grid-template-columns: 1fr;
-        min-height: auto;
       }
 
       .hero-text {
-        padding: 55px 24px 50px;
+        padding: 50px 22px;
       }
 
       .hero-text h1 {
-        font-size: 40px;
-        line-height: 1.12;
+        font-size: 39px;
       }
 
-      .hero-text p {
-        font-size: 18px;
-      }
-
-      .hero-text .button {
-        width: 100%;
-        max-width: 330px;
-      }
-
-      .hero-image,
       .hero-image img {
-        min-height: 420px;
-        height: 420px;
+        min-height: 380px;
+        height: 380px;
       }
 
-      .benefits {
+      .benefits,
+      .grid4,
+      .price-list,
+      .package-grid,
+      .step-grid,
+      .about-grid,
+      .review-grid {
         grid-template-columns: 1fr;
-        padding: 28px 20px;
-        gap: 8px;
-      }
-
-      section.content {
-        padding: 62px 20px;
-      }
-
-      .title {
-        margin-bottom: 32px;
-      }
-
-      .title h2 {
-        font-size: 33px;
-      }
-
-      .services,
-      .packages,
-      .steps,
-      .about-wrap,
-      .testimonials,
-      .price-list {
-        grid-template-columns: 1fr;
-      }
-
-      .package.featured {
-        transform: none;
       }
 
       .price-row {
         grid-template-columns: 1fr;
       }
 
-      .service-request {
+      .request {
         grid-column: 1;
         width: 100%;
-        padding: 13px 18px;
-        font-size: 16px;
       }
 
-      form {
+      .form {
         grid-template-columns: 1fr;
       }
 
-      textarea,
-      form button {
+      .form textarea,
+      .form button {
         grid-column: 1;
       }
 
-      .whatsapp {
-        width: 58px;
-        height: 58px;
-        right: 16px;
-        bottom: 16px;
-        font-size: 28px;
+      section {
+        padding: 58px 18px;
       }
-
     }
-
-
-    @media (max-width: 480px) {
-
-      .nav {
-        min-height: 76px;
-      }
-
-      .logo img {
-        height: 62px;
-      }
-
-      nav {
-        top: 76px;
-      }
-
-      .hero-text {
-        padding: 46px 18px 42px;
-      }
-
-      .hero-text h1 {
-        font-size: 34px;
-      }
-
-      .hero-text p {
-        font-size: 17px;
-      }
-
-      .hero-image,
-      .hero-image img {
-        min-height: 340px;
-        height: 340px;
-      }
-
-      section.content {
-        padding: 52px 16px;
-      }
-
-      .title h2 {
-        font-size: 30px;
-      }
-
-      .price {
-        font-size: 33px;
-      }
-
-    }
-
   </style>
 </head>
 
 <body>
 
 <header>
-
   <div class="nav">
 
     <div class="logo">
-      <img
-        id="logoDep"
-        src="logo-final.jpeg"
-        alt="DEP Medical"
-      >
+      <img id="logoDep" src="logo-final.jpeg" alt="DEP Medical">
     </div>
 
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="Deschide meniul"
-      aria-expanded="false"
-    >
-      ☰
-    </button>
+    <button class="menu" id="menuButton">☰</button>
 
     <nav id="mainNav">
-
       <a href="#acasa">Acasă</a>
       <a href="#servicii">Servicii</a>
       <a href="#tarife">Tarife</a>
       <a href="#pachete">Pachete</a>
       <a href="#cum">Cum funcționează</a>
       <a href="#despre">Despre noi</a>
+      <a href="#recenzii">Recenzii</a>
+      <a href="#scrie-recenzie">Scrie o recenzie</a>
       <a href="#intrebari">FAQ</a>
-      <a href="#oferta">Ofertă personalizată</a>
+      <a href="#oferta">Ofertă</a>
       <a href="#contact">Contact</a>
-
     </nav>
 
   </div>
-
 </header>
 
 
@@ -1022,21 +769,18 @@
       oferite cu profesionalism, respect și grijă pentru fiecare pacient.
     </p>
 
-    <a href="#evaluare" class="button">
+    <a class="btn" href="#evaluare">
       Solicită o evaluare →
     </a>
 
   </div>
 
-
   <div class="hero-image">
-
     <img
       id="pozaHero"
       src="hero-final.png.jpeg"
       alt="Îngrijire medicală la domiciliu DEP Medical"
     >
-
   </div>
 
 </section>
@@ -1062,71 +806,48 @@
 </div>
 
 
-<section class="content" id="servicii">
+<section id="servicii">
 
   <div class="title">
-
     <h2>Serviciile noastre</h2>
-
     <p>
       Servicii medicale și de îngrijire la domiciliu adaptate
       nevoilor fiecărui beneficiar.
     </p>
-
   </div>
 
-
-  <div class="services">
+  <div class="grid4">
 
     <div class="card">
-
       <div class="icon">💉</div>
-
       <h3>Tratamente medicale</h3>
-
-      <p>
+      <p class="muted">
         Injecții, perfuzii, pansamente și alte proceduri la domiciliu.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <div class="icon">🩺</div>
-
       <h3>Monitorizare</h3>
-
-      <p>
+      <p class="muted">
         Tensiune arterială, glicemie, ECG, Holter TA și evaluare.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <div class="icon">🛏️</div>
-
       <h3>Igienă și îngrijire</h3>
-
-      <p>
+      <p class="muted">
         Igienă corporală, îngrijire la pat, mobilizare și sprijin.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <div class="icon">❤️</div>
-
       <h3>Sprijin personalizat</h3>
-
-      <p>
+      <p class="muted">
         Asistență și companie adaptate beneficiarului și familiei.
       </p>
-
     </div>
 
   </div>
@@ -1134,368 +855,129 @@
 </section>
 
 
-<section class="content prices-section" id="tarife">
+<section class="prices" id="tarife">
 
   <div class="title">
-
     <h2>Servicii individuale & tarife</h2>
-
     <p>
       Apasă „Solicită” pentru a trimite direct pe WhatsApp serviciul ales.
     </p>
-
   </div>
 
 
-  <div class="price-category">
+  <div class="category">
 
     <h3>Servicii medicale</h3>
 
-    <p class="category-note">
+    <p class="muted">
       Materialele necesare procedurilor sunt incluse,
       cu excepția celor prescrise pe rețetă.
     </p>
 
-
     <div class="price-list">
 
       <div class="price-row">
-
-        <span class="price-name">
-          Cura perfuzabilă acasă
-        </span>
-
-        <span class="service-price">
-          220 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Cura perfuzabilă acasă', '220 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Cura perfuzabilă acasă</span>
+        <span class="price">220 lei</span>
+        <button class="request" onclick="solicita('Cura perfuzabilă acasă','220 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Injecție intramusculară
-        </span>
-
-        <span class="service-price">
-          90 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Injecție intramusculară', '90 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Injecție intramusculară</span>
+        <span class="price">90 lei</span>
+        <button class="request" onclick="solicita('Injecție intramusculară','90 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Injecție subcutanată
-        </span>
-
-        <span class="service-price">
-          90 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Injecție subcutanată', '90 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Injecție subcutanată</span>
+        <span class="price">90 lei</span>
+        <button class="request" onclick="solicita('Injecție subcutanată','90 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Injecție intravenoasă
-        </span>
-
-        <span class="service-price">
-          90 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Injecție intravenoasă', '90 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Injecție intravenoasă</span>
+        <span class="price">90 lei</span>
+        <button class="request" onclick="solicita('Injecție intravenoasă','90 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Măsurare tensiune arterială
-        </span>
-
-        <span class="service-price">
-          30 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Măsurare tensiune arterială', '30 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Măsurare tensiune arterială</span>
+        <span class="price">30 lei</span>
+        <button class="request" onclick="solicita('Măsurare tensiune arterială','30 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Testare glicemie
-        </span>
-
-        <span class="service-price">
-          30 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Testare glicemie', '30 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Testare glicemie</span>
+        <span class="price">30 lei</span>
+        <button class="request" onclick="solicita('Testare glicemie','30 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Pachet TA + Glicemie
-        </span>
-
-        <span class="service-price">
-          50 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Pachet TA + Glicemie', '50 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Pachet TA + Glicemie</span>
+        <span class="price">50 lei</span>
+        <button class="request" onclick="solicita('Pachet TA + Glicemie','50 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Screening ECG
-        </span>
-
-        <span class="service-price">
-          200 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Screening ECG', '200 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Screening ECG</span>
+        <span class="price">200 lei</span>
+        <button class="request" onclick="solicita('Screening ECG','200 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Montare Holter TA
-        </span>
-
-        <span class="service-price">
-          150 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Montare Holter TA', '150 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Montare Holter TA</span>
+        <span class="price">150 lei</span>
+        <button class="request" onclick="solicita('Montare Holter TA','150 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Pansament simplu plagă
-        </span>
-
-        <span class="service-price">
-          100 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Pansament simplu plagă', '100 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Pansament simplu plagă</span>
+        <span class="price">100 lei</span>
+        <button class="request" onclick="solicita('Pansament simplu plagă','100 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Pansament complex plagă
-        </span>
-
-        <span class="service-price">
-          150 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Pansament complex plagă', '150 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Pansament complex plagă</span>
+        <span class="price">150 lei</span>
+        <button class="request" onclick="solicita('Pansament complex plagă','150 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Tratament escare și monitorizare
-        </span>
-
-        <span class="service-price">
-          180 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Tratament escare și monitorizare', '180 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Tratament escare și monitorizare</span>
+        <span class="price">180 lei</span>
+        <button class="request" onclick="solicita('Tratament escare și monitorizare','180 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Toaleta traheostomei
-        </span>
-
-        <span class="service-price">
-          200 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Toaleta traheostomei', '200 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Toaleta traheostomei</span>
+        <span class="price">200 lei</span>
+        <button class="request" onclick="solicita('Toaleta traheostomei','200 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Schimbare sondă urinară
-        </span>
-
-        <span class="service-price">
-          250 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Schimbare sondă urinară', '250 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Schimbare sondă urinară</span>
+        <span class="price">250 lei</span>
+        <button class="request" onclick="solicita('Schimbare sondă urinară','250 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Sondaj vezical – femei
-        </span>
-
-        <span class="service-price">
-          250 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Sondaj vezical – femei', '250 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Sondaj vezical – femei</span>
+        <span class="price">250 lei</span>
+        <button class="request" onclick="solicita('Sondaj vezical – femei','250 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Evaluare clinică inițială
-        </span>
-
-        <span class="service-price">
-          150 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Evaluare clinică inițială', '150 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Evaluare clinică inițială</span>
+        <span class="price">150 lei</span>
+        <button class="request" onclick="solicita('Evaluare clinică inițială','150 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
         <span class="price-name">
           Recoltare analize medicale la domiciliu – doar adulți
         </span>
-
-        <span class="service-price">
-          120–180 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Recoltare analize medicale la domiciliu – doar adulți', '120–180 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price">120–180 lei</span>
+        <button class="request" onclick="solicita('Recoltare analize medicale la domiciliu – doar adulți','120–180 lei')">Solicită</button>
       </div>
 
     </div>
@@ -1503,136 +985,50 @@
   </div>
 
 
-  <div class="price-category">
+  <div class="category">
 
-    <h3>
-      Igienă și întreținere
-    </h3>
+    <h3>Igienă și întreținere</h3>
 
-    <p class="category-note">
+    <p class="muted">
       Produsele de igienă sunt asigurate de către beneficiar.
     </p>
-
 
     <div class="price-list">
 
       <div class="price-row">
-
-        <span class="price-name">
-          Toaletă parțială corp
-        </span>
-
-        <span class="service-price">
-          80 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Toaletă parțială corp', '80 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Toaletă parțială corp</span>
+        <span class="price">80 lei</span>
+        <button class="request" onclick="solicita('Toaletă parțială corp','80 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Toaletă generală corp
-        </span>
-
-        <span class="service-price">
-          150 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Toaletă generală corp', '150 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Toaletă generală corp</span>
+        <span class="price">150 lei</span>
+        <button class="request" onclick="solicita('Toaletă generală corp','150 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Baie completă la pat
-        </span>
-
-        <span class="service-price">
-          180 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Baie completă la pat', '180 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Baie completă la pat</span>
+        <span class="price">180 lei</span>
+        <button class="request" onclick="solicita('Baie completă la pat','180 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Schimbarea lenjeriei – doar manopera
-        </span>
-
-        <span class="service-price">
-          50 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Schimbarea lenjeriei – doar manopera', '50 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Schimbarea lenjeriei – doar manopera</span>
+        <span class="price">50 lei</span>
+        <button class="request" onclick="solicita('Schimbarea lenjeriei – doar manopera','50 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Mobilizare pasivă escare
-        </span>
-
-        <span class="service-price">
-          80 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Mobilizare pasivă escare', '80 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Mobilizare pasivă escare</span>
+        <span class="price">80 lei</span>
+        <button class="request" onclick="solicita('Mobilizare pasivă escare','80 lei')">Solicită</button>
       </div>
 
-
       <div class="price-row">
-
-        <span class="price-name">
-          Companion / asistență orară
-        </span>
-
-        <span class="service-price">
-          70 lei
-        </span>
-
-        <button
-          class="service-request"
-          onclick="solicitaServiciu('Companion / asistență orară', '70 lei')"
-        >
-          Solicită
-        </button>
-
+        <span class="price-name">Companion / asistență orară</span>
+        <span class="price">70 lei</span>
+        <button class="request" onclick="solicita('Companion / asistență orară','70 lei')">Solicită</button>
       </div>
 
     </div>
@@ -1642,174 +1038,78 @@
 </section>
 
 
-<section class="content packages-section" id="pachete">
+<section class="packages" id="pachete">
 
   <div class="title">
-
-    <h2>
-      Pachetele DEP Medical
-    </h2>
-
+    <h2>Pachetele DEP Medical</h2>
     <p>
       Toate vizitele incluse în pachete au o durată standard de 60 de minute.
     </p>
-
   </div>
 
-
-  <div class="packages">
+  <div class="package-grid">
 
     <div class="package">
 
-      <div class="badge">
-        BASIC
-      </div>
+      <h3>Basic</h3>
 
-      <h3>
-        Pachet Basic
-      </h3>
-
-      <div class="price">
+      <div class="big">
         1.200 lei
-        <span>/ lună</span>
+        <span style="font-size:16px;color:#687b87">/ lună</span>
       </div>
-
-      <p class="package-info">
-        Potrivit pentru pacienții care au nevoie de sprijin săptămânal.
-      </p>
 
       <ul>
-
-        <li>
-          1 vizită pe săptămână
-        </li>
-
-        <li>
-          4 vizite pe lună
-        </li>
-
-        <li>
-          60 minute / vizită
-        </li>
-
-        <li>
-          Monitorizare și suport personalizat
-        </li>
-
+        <li>1 vizită pe săptămână</li>
+        <li>4 vizite pe lună</li>
+        <li>60 minute / vizită</li>
+        <li>Monitorizare și suport personalizat</li>
       </ul>
 
-      <a
-        href="#evaluare"
-        class="button"
-      >
-        Solicită pachetul
-      </a>
+      <a href="#evaluare" class="btn">Solicită pachetul</a>
 
     </div>
 
 
     <div class="package featured">
 
-      <div class="badge">
-        STANDARD
-      </div>
+      <h3>Standard</h3>
 
-      <h3>
-        Pachet Standard
-      </h3>
-
-      <div class="price">
+      <div class="big">
         2.400 lei
-        <span>/ lună</span>
+        <span style="font-size:16px;color:#687b87">/ lună</span>
       </div>
-
-      <p class="package-info">
-        Pentru pacienții care au nevoie de îngrijire regulată.
-      </p>
 
       <ul>
-
-        <li>
-          3 vizite pe săptămână
-        </li>
-
-        <li>
-          12 vizite pe lună
-        </li>
-
-        <li>
-          60 minute / vizită
-        </li>
-
-        <li>
-          Monitorizare constantă
-        </li>
-
-        <li>
-          Comunicare cu familia
-        </li>
-
+        <li>3 vizite pe săptămână</li>
+        <li>12 vizite pe lună</li>
+        <li>60 minute / vizită</li>
+        <li>Monitorizare constantă</li>
+        <li>Comunicare cu familia</li>
       </ul>
 
-      <a
-        href="#evaluare"
-        class="button"
-      >
-        Solicită pachetul
-      </a>
+      <a href="#evaluare" class="btn">Solicită pachetul</a>
 
     </div>
 
 
     <div class="package">
 
-      <div class="badge">
-        PREMIUM
-      </div>
+      <h3>Premium</h3>
 
-      <h3>
-        Pachet Premium
-      </h3>
-
-      <div class="price">
+      <div class="big">
         3.200 lei
-        <span>/ lună</span>
+        <span style="font-size:16px;color:#687b87">/ lună</span>
       </div>
-
-      <p class="package-info">
-        Pentru persoanele care au nevoie de suport extins și vizite frecvente.
-      </p>
 
       <ul>
-
-        <li>
-          4 vizite pe săptămână
-        </li>
-
-        <li>
-          16 vizite pe lună
-        </li>
-
-        <li>
-          60 minute / vizită
-        </li>
-
-        <li>
-          Monitorizare extinsă
-        </li>
-
-        <li>
-          Plan de îngrijire personalizat
-        </li>
-
+        <li>4 vizite pe săptămână</li>
+        <li>16 vizite pe lună</li>
+        <li>60 minute / vizită</li>
+        <li>Monitorizare extinsă</li>
+        <li>Plan de îngrijire personalizat</li>
       </ul>
 
-      <a
-        href="#evaluare"
-        class="button"
-      >
-        Solicită pachetul
-      </a>
+      <a href="#evaluare" class="btn">Solicită pachetul</a>
 
     </div>
 
@@ -1818,71 +1118,37 @@
 </section>
 
 
-<section class="content how-section" id="cum">
+<section class="steps" id="cum">
 
   <div class="title">
-
-    <h2>
-      Cum funcționează
-    </h2>
-
-    <p>
-      Proces simplu, clar și adaptat fiecărei familii.
-    </p>
-
+    <h2>Cum funcționează</h2>
+    <p>Proces simplu, clar și adaptat fiecărei familii.</p>
   </div>
 
-
-  <div class="steps">
+  <div class="step-grid">
 
     <div class="step">
-
-      <div class="step-number">
-        1
-      </div>
-
-      <h3>
-        Ne contactezi
-      </h3>
-
-      <p>
+      <div class="num">1</div>
+      <h3>Ne contactezi</h3>
+      <p class="muted">
         Ne suni, ne scrii pe WhatsApp sau completezi formularul.
       </p>
-
     </div>
 
-
     <div class="step">
-
-      <div class="step-number">
-        2
-      </div>
-
-      <h3>
-        Evaluăm nevoile
-      </h3>
-
-      <p>
+      <div class="num">2</div>
+      <h3>Evaluăm nevoile</h3>
+      <p class="muted">
         Discutăm situația beneficiarului și stabilim tipul de sprijin potrivit.
       </p>
-
     </div>
 
-
     <div class="step">
-
-      <div class="step-number">
-        3
-      </div>
-
-      <h3>
-        Începem îngrijirea
-      </h3>
-
-      <p>
+      <div class="num">3</div>
+      <h3>Începem îngrijirea</h3>
+      <p class="muted">
         Stabilim programul vizitelor și planul de îngrijire.
       </p>
-
     </div>
 
   </div>
@@ -1890,15 +1156,13 @@
 </section>
 
 
-<section class="content about" id="despre">
+<section class="about" id="despre">
 
-  <div class="about-wrap">
+  <div class="about-grid">
 
-    <div class="about-box">
+    <div class="box">
 
-      <h2>
-        Despre DEP Medical
-      </h2>
+      <h2>Despre DEP Medical</h2>
 
       <p>
         DEP Medical oferă servicii de îngrijire medicală la domiciliu,
@@ -1913,38 +1177,19 @@
         atentă și responsabilă.
       </p>
 
-      <div class="check">
-        Personal medical calificat
-      </div>
-
-      <div class="check">
-        Peste 12 ani de experiență
-      </div>
-
-      <div class="check">
-        Experiență în geriatrie și gerontologie
-      </div>
-
-      <div class="check">
-        Îngrijirea persoanelor vârstnice
-      </div>
-
-      <div class="check">
-        Servicii personalizate
-      </div>
-
-      <div class="check">
-        Comunicare cu familia
-      </div>
+      <div class="check">Personal medical calificat</div>
+      <div class="check">Peste 12 ani de experiență</div>
+      <div class="check">Experiență în geriatrie și gerontologie</div>
+      <div class="check">Îngrijirea persoanelor vârstnice</div>
+      <div class="check">Servicii personalizate</div>
+      <div class="check">Comunicare cu familia</div>
 
     </div>
 
 
-    <div class="about-box">
+    <div class="box">
 
-      <h2>
-        De ce DEP Medical?
-      </h2>
+      <h2>De ce DEP Medical?</h2>
 
       <p>
         Ne dorim ca fiecare beneficiar să primească sprijin,
@@ -1952,34 +1197,16 @@
       </p>
 
       <p>
-        Punem accent pe relația umană, pe continuitatea îngrijirii
-        și pe comunicarea cu aparținătorii, astfel încât fiecare
-        intervenție să fie adaptată situației reale a beneficiarului.
+        Punem accent pe relația umană, continuitatea îngrijirii
+        și comunicarea cu aparținătorii.
       </p>
 
-      <div class="check">
-        Profesionalism
-      </div>
-
-      <div class="check">
-        Empatie
-      </div>
-
-      <div class="check">
-        Promptitudine
-      </div>
-
-      <div class="check">
-        Atenție la nevoile beneficiarului
-      </div>
-
-      <div class="check">
-        Comunicare cu aparținătorii
-      </div>
-
-      <div class="check">
-        Îngrijire cu respect și responsabilitate
-      </div>
+      <div class="check">Profesionalism</div>
+      <div class="check">Empatie</div>
+      <div class="check">Promptitudine</div>
+      <div class="check">Atenție la nevoile beneficiarului</div>
+      <div class="check">Comunicare cu aparținătorii</div>
+      <div class="check">Îngrijire cu respect și responsabilitate</div>
 
     </div>
 
@@ -1988,148 +1215,149 @@
 </section>
 
 
-<section class="content testimonials-section">
+<section class="reviews" id="recenzii">
+
+  <div class="title">
+    <h2>Ce spun familiile</h2>
+    <p>Recenzii publicate după verificare și aprobare.</p>
+  </div>
+
+  <div class="review-grid" id="reviewsPublic">
+    <div class="empty">
+      Se încarcă recenziile...
+    </div>
+  </div>
+
+</section>
+
+
+<section class="review-form-section" id="scrie-recenzie">
 
   <div class="title">
 
-    <h2>
-      Ce spun familiile
-    </h2>
+    <h2>Scrie o recenzie</h2>
 
     <p>
-      Testimonialele de mai jos sunt demonstrative și pot fi înlocuite ulterior cu recenzii reale.
+      Ai apelat la serviciile DEP Medical?
+      Ne poți spune cum a fost experiența ta.
     </p>
 
   </div>
 
+  <div class="review-box">
 
-  <div class="testimonials">
+    <form id="reviewForm">
 
-    <div class="testimonial">
+      <label for="reviewName">
+        Nume sau inițiale
+      </label>
 
-      <div class="stars">
-        ★★★★★
+      <input
+        id="reviewName"
+        maxlength="60"
+        placeholder="Exemplu: Maria P. sau Familia P."
+        required
+      >
+
+
+      <label>
+        Evaluare
+      </label>
+
+      <div class="star-pick">
+
+        <button type="button" class="star-btn active" data-r="1">★</button>
+        <button type="button" class="star-btn active" data-r="2">★</button>
+        <button type="button" class="star-btn active" data-r="3">★</button>
+        <button type="button" class="star-btn active" data-r="4">★</button>
+        <button type="button" class="star-btn active" data-r="5">★</button>
+
       </div>
 
-      <p>
-        „Am apreciat foarte mult comunicarea, răbdarea și atenția acordată.”
+      <input
+        type="hidden"
+        id="reviewRating"
+        value="5"
+      >
+
+
+      <label for="reviewText">
+        Recenzia ta
+      </label>
+
+      <textarea
+        id="reviewText"
+        maxlength="1200"
+        placeholder="Scrie aici experiența ta..."
+        required
+      ></textarea>
+
+
+      <button
+        class="review-submit"
+        id="reviewSubmit"
+        type="submit"
+      >
+        Trimite recenzia
+      </button>
+
+      <div
+        id="reviewMsg"
+        class="msg"
+      ></div>
+
+      <p
+        class="muted"
+        style="font-size:14px;margin-top:12px"
+      >
+        Recenzia va apărea doar după aprobare.
+        Nu include date medicale sensibile sau informații private.
       </p>
 
-      <strong>
-        Familia M.
-      </strong>
-
-    </div>
-
-
-    <div class="testimonial">
-
-      <div class="stars">
-        ★★★★★
-      </div>
-
-      <p>
-        „Pentru noi a contat enorm că îngrijirea a putut fi făcută acasă.”
-      </p>
-
-      <strong>
-        Familia D.
-      </strong>
-
-    </div>
-
-
-    <div class="testimonial">
-
-      <div class="stars">
-        ★★★★★
-      </div>
-
-      <p>
-        „Profesionalism, punctualitate și o atitudine caldă față de beneficiar.”
-      </p>
-
-      <strong>
-        Familia A.
-      </strong>
-
-    </div>
+    </form>
 
   </div>
 
 </section>
 
 
-<section class="content faq-section" id="intrebari">
+<section class="faq" id="intrebari">
 
   <div class="title">
-
-    <h2>
-      Întrebări frecvente
-    </h2>
-
-    <p>
-      Răspunsuri rapide la cele mai importante întrebări.
-    </p>
-
+    <h2>Întrebări frecvente</h2>
   </div>
 
-
-  <div class="faq">
+  <div class="faq-wrap">
 
     <details>
-
-      <summary>
-        În ce zone oferiți servicii?
-      </summary>
-
+      <summary>În ce zone oferiți servicii?</summary>
       <p>
         Serviciile DEP Medical sunt disponibile în București și Ilfov.
       </p>
-
     </details>
 
-
     <details>
-
-      <summary>
-        Cât durează o vizită?
-      </summary>
-
+      <summary>Cât durează o vizită?</summary>
       <p>
-        Vizitele din pachetele Basic, Standard și Premium au o durată standard de 60 de minute.
-        Durata vizitei poate fi ajustată în funcție de complexitatea nevoilor beneficiarului
-        sau la solicitarea aparținătorului.
+        Vizitele din pachetele Basic, Standard și Premium
+        au o durată standard de 60 de minute.
       </p>
-
     </details>
 
-
     <details>
-
-      <summary>
-        Pot solicita un program diferit de pachetele afișate?
-      </summary>
-
+      <summary>Pot solicita un program diferit?</summary>
       <p>
-        Da. Prin secțiunea „Ofertă personalizată” poți descrie nevoile beneficiarului,
-        iar DEP Medical poate propune o soluție adaptată.
+        Da. Prin secțiunea „Ofertă personalizată”
+        poți descrie nevoile beneficiarului.
       </p>
-
     </details>
 
-
     <details>
-
-      <summary>
-        Cum solicit o evaluare?
-      </summary>
-
+      <summary>Cum solicit o evaluare?</summary>
       <p>
-        Poți completa formularul de pe site,
-        ne poți contacta telefonic sau direct prin WhatsApp.
+        Poți completa formularul, ne poți suna
+        sau ne poți scrie pe WhatsApp.
       </p>
-
     </details>
 
   </div>
@@ -2137,178 +1365,133 @@
 </section>
 
 
-<section class="content evaluation" id="evaluare">
-
-  <div class="evaluation-wrap">
-
-    <div class="title">
-
-      <h2>
-        Solicită o evaluare
-      </h2>
-
-      <p>
-        Completează formularul și trimite solicitarea direct pe WhatsApp.
-      </p>
-
-    </div>
-
-
-    <form id="formular">
-
-      <input
-        type="text"
-        id="nume"
-        placeholder="Nume complet"
-        required
-      >
-
-      <input
-        type="tel"
-        id="telefon"
-        placeholder="Număr de telefon"
-        required
-      >
-
-      <input
-        type="text"
-        id="localitate"
-        placeholder="Localitate"
-        required
-      >
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-      >
-
-      <textarea
-        id="mesaj"
-        placeholder="Spune-ne cu ce te putem ajuta"
-      ></textarea>
-
-      <button type="submit">
-        Trimite solicitarea pe WhatsApp
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-
-<section class="content custom-offer" id="oferta">
-
-  <div class="offer-wrap">
-
-    <div class="title">
-
-      <h2>
-        Ofertă personalizată
-      </h2>
-
-      <p>
-        Spune-ne de ce are nevoie beneficiarul, iar DEP Medical
-        va reveni cu o ofertă adaptată situației.
-      </p>
-
-    </div>
-
-
-    <form id="formular-oferta">
-
-      <input
-        type="text"
-        id="ofertaNume"
-        placeholder="Nume complet"
-        required
-      >
-
-      <input
-        type="tel"
-        id="ofertaTelefon"
-        placeholder="Număr de telefon"
-        required
-      >
-
-      <input
-        type="text"
-        id="ofertaLocalitate"
-        placeholder="Localitate"
-        required
-      >
-
-      <select
-        id="ofertaVizite"
-        required
-      >
-
-        <option value="">
-          Câte vizite pe săptămână considerați că sunt necesare?
-        </option>
-
-        <option>
-          1 vizită / săptămână
-        </option>
-
-        <option>
-          2 vizite / săptămână
-        </option>
-
-        <option>
-          3 vizite / săptămână
-        </option>
-
-        <option>
-          4 vizite / săptămână
-        </option>
-
-        <option>
-          5+ vizite / săptămână
-        </option>
-
-        <option>
-          Nu știu încă
-        </option>
-
-      </select>
-
-
-      <textarea
-        id="ofertaNevoi"
-        placeholder="Descrieți nevoile beneficiarului: monitorizare, igienă, mobilizare, administrare tratament, companie sau alte nevoi..."
-        required
-      ></textarea>
-
-
-      <button type="submit">
-        Solicită oferta personalizată
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-
-<section class="content contact" id="contact">
+<section class="dark" id="evaluare">
 
   <div class="title">
 
-    <h2>
-      Contact DEP Medical
-    </h2>
+    <h2>Solicită o evaluare</h2>
+
+    <p>
+      Completează formularul și trimite solicitarea direct pe WhatsApp.
+    </p>
 
   </div>
 
+  <form class="form" id="formular">
+
+    <input
+      id="nume"
+      placeholder="Nume complet"
+      required
+    >
+
+    <input
+      id="telefon"
+      placeholder="Număr de telefon"
+      required
+    >
+
+    <input
+      id="localitate"
+      placeholder="Localitate"
+      required
+    >
+
+    <input
+      id="emailEvaluare"
+      type="email"
+      placeholder="Email"
+    >
+
+    <textarea
+      id="mesaj"
+      placeholder="Spune-ne cu ce te putem ajuta"
+    ></textarea>
+
+    <button type="submit">
+      Trimite solicitarea pe WhatsApp
+    </button>
+
+  </form>
+
+</section>
+
+
+<section class="dark" id="oferta">
+
+  <div class="title">
+
+    <h2>Ofertă personalizată</h2>
+
+    <p>
+      Spune-ne de ce are nevoie beneficiarul,
+      iar DEP Medical va reveni cu o ofertă adaptată.
+    </p>
+
+  </div>
+
+  <form class="form" id="ofertaForm">
+
+    <input
+      id="oNume"
+      placeholder="Nume complet"
+      required
+    >
+
+    <input
+      id="oTelefon"
+      placeholder="Număr de telefon"
+      required
+    >
+
+    <input
+      id="oLocalitate"
+      placeholder="Localitate"
+      required
+    >
+
+    <select
+      id="oVizite"
+      required
+    >
+
+      <option value="">
+        Număr estimat de vizite/săptămână
+      </option>
+
+      <option>1 vizită / săptămână</option>
+      <option>2 vizite / săptămână</option>
+      <option>3 vizite / săptămână</option>
+      <option>4 vizite / săptămână</option>
+      <option>5+ vizite / săptămână</option>
+      <option>Nu știu încă</option>
+
+    </select>
+
+    <textarea
+      id="oNevoi"
+      placeholder="Descrieți nevoile beneficiarului..."
+      required
+    ></textarea>
+
+    <button type="submit">
+      Solicită oferta personalizată
+    </button>
+
+  </form>
+
+</section>
+
+
+<section class="contact" id="contact">
+
+  <div class="title">
+    <h2>Contact DEP Medical</h2>
+  </div>
 
   <p>
     📍 București și Ilfov
   </p>
-
 
   <p>
     📞 Telefon:
@@ -2316,7 +1499,6 @@
       0761 802 133
     </a>
   </p>
-
 
   <p>
     ✉️ Email:
@@ -2329,14 +1511,12 @@
 
 
 <footer>
-
   © 2026 DEP Medical. Toate drepturile rezervate.
-
 </footer>
 
 
 <a
-  class="whatsapp"
+  class="wa"
   href="https://wa.me/40761802133"
   target="_blank"
   aria-label="WhatsApp DEP Medical"
@@ -2347,367 +1527,477 @@
 
 <script>
 
+  const SUPABASE_URL =
+    "https://rbwqcbnykuebudbzriva.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_ehgMCXMBs2KD3tq8tL5NVQ_MmY9-H2Q";
+
+  const sb =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
 
   /* MENIU MOBIL */
 
   const menuButton =
-    document.getElementById("menuButton");
+    document.getElementById(
+      "menuButton"
+    );
 
   const mainNav =
-    document.getElementById("mainNav");
-
+    document.getElementById(
+      "mainNav"
+    );
 
   menuButton.addEventListener(
     "click",
     function() {
 
-      const esteDeschis =
-        mainNav.classList.toggle("open");
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        esteDeschis
+      mainNav.classList.toggle(
+        "open"
       );
 
       menuButton.textContent =
-        esteDeschis ? "✕" : "☰";
-
-      document.body.classList.toggle(
-        "menu-open",
-        esteDeschis
-      );
-
+        mainNav.classList.contains(
+          "open"
+        )
+        ? "✕"
+        : "☰";
     }
   );
 
-
-  const linkuriMeniu =
-    mainNav.querySelectorAll("a");
-
-
-  linkuriMeniu.forEach(
-    function(link) {
+  mainNav
+    .querySelectorAll("a")
+    .forEach(function(link) {
 
       link.addEventListener(
         "click",
         function() {
 
-          mainNav.classList.remove("open");
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
+          mainNav.classList.remove(
+            "open"
           );
 
-          menuButton.textContent = "☰";
-
-          document.body.classList.remove(
-            "menu-open"
-          );
-
+          menuButton.textContent =
+            "☰";
         }
       );
+    });
 
+
+  /* STELE */
+
+  document
+    .querySelectorAll(
+      ".star-btn"
+    )
+    .forEach(function(button) {
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          const rating =
+            Number(
+              button.dataset.r
+            );
+
+          document.getElementById(
+            "reviewRating"
+          ).value = rating;
+
+          document
+            .querySelectorAll(
+              ".star-btn"
+            )
+            .forEach(function(star) {
+
+              star.classList.toggle(
+                "active",
+                Number(star.dataset.r) <= rating
+              );
+            });
+        }
+      );
+    });
+
+
+  /* TRIMITERE RECENZIE */
+
+  document
+    .getElementById(
+      "reviewForm"
+    )
+    .addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        const name =
+          document
+            .getElementById(
+              "reviewName"
+            )
+            .value
+            .trim();
+
+        const rating =
+          Number(
+            document.getElementById(
+              "reviewRating"
+            ).value
+          );
+
+        const reviewText =
+          document
+            .getElementById(
+              "reviewText"
+            )
+            .value
+            .trim();
+
+        const msg =
+          document.getElementById(
+            "reviewMsg"
+          );
+
+        const btn =
+          document.getElementById(
+            "reviewSubmit"
+          );
+
+        btn.disabled = true;
+        btn.textContent =
+          "Se trimite...";
+
+        const {
+          error
+        } =
+          await sb
+            .from("reviews")
+            .insert({
+              name: name,
+              rating: rating,
+              review_text: reviewText,
+              status: "pending"
+            });
+
+        btn.disabled = false;
+        btn.textContent =
+          "Trimite recenzia";
+
+        if (error) {
+
+          console.error(error);
+
+          msg.className =
+            "msg err";
+
+          msg.textContent =
+            "Recenzia nu a putut fi trimisă. Încearcă din nou.";
+
+          return;
+        }
+
+        msg.className =
+          "msg ok";
+
+        msg.textContent =
+          "Mulțumim! Recenzia a fost trimisă și va apărea după aprobare.";
+
+        event.target.reset();
+
+        document.getElementById(
+          "reviewRating"
+        ).value = 5;
+
+        document
+          .querySelectorAll(
+            ".star-btn"
+          )
+          .forEach(function(star) {
+
+            star.classList.add(
+              "active"
+            );
+          });
+      }
+    );
+
+
+  /* RECENZII APROBATE */
+
+  async function loadReviews() {
+
+    const container =
+      document.getElementById(
+        "reviewsPublic"
+      );
+
+    const {
+      data,
+      error
+    } =
+      await sb
+        .from("reviews")
+        .select(
+          "name,rating,review_text,created_at"
+        )
+        .eq(
+          "status",
+          "approved"
+        )
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        )
+        .limit(12);
+
+    container.innerHTML = "";
+
+    if (error) {
+
+      console.error(error);
+
+      container.innerHTML =
+        '<div class="empty">Recenziile nu au putut fi încărcate momentan.</div>';
+
+      return;
     }
-  );
 
+    if (
+      !data ||
+      data.length === 0
+    ) {
 
-  /* LOGO */
+      container.innerHTML =
+        '<div class="empty">Nu există încă recenzii publicate.</div>';
 
-  const logo =
-    document.getElementById("logoDep");
+      return;
+    }
 
+    data.forEach(
+      function(review) {
 
-  const varianteLogo = [
+        const card =
+          document.createElement(
+            "div"
+          );
 
-    "logo-final.jpeg",
+        card.className =
+          "review-card";
 
-    "logo-final.jpg",
+        const stars =
+          document.createElement(
+            "div"
+          );
 
-    "logo-final.png",
+        stars.className =
+          "stars";
 
-    "logo-final.png.jpg",
+        stars.textContent =
+          "★".repeat(
+            review.rating
+          ) +
+          "☆".repeat(
+            5 - review.rating
+          );
 
-    "logo-final.png.jpeg"
+        const text =
+          document.createElement(
+            "p"
+          );
 
-  ];
+        text.textContent =
+          "„" +
+          review.review_text +
+          "”";
 
+        const name =
+          document.createElement(
+            "strong"
+          );
 
-  let pozitieLogo = 0;
+        name.textContent =
+          review.name;
 
+        card.appendChild(
+          stars
+        );
 
-  logo.onerror =
-    function() {
+        card.appendChild(
+          text
+        );
 
-      pozitieLogo++;
+        card.appendChild(
+          name
+        );
 
-      if (
-        pozitieLogo <
-        varianteLogo.length
-      ) {
-
-        logo.src =
-          varianteLogo[
-            pozitieLogo
-          ];
-
+        container.appendChild(
+          card
+        );
       }
+    );
+  }
 
-    };
-
-
-  /* HERO */
-
-  const poza =
-    document.getElementById("pozaHero");
-
-
-  const variantePoza = [
-
-    "hero-final.png.jpeg",
-
-    "hero-final.jpg",
-
-    "hero-final.jpeg",
-
-    "hero-final.png",
-
-    "hero-final.png.jpg"
-
-  ];
-
-
-  let pozitiePoza = 0;
-
-
-  poza.onerror =
-    function() {
-
-      pozitiePoza++;
-
-      if (
-        pozitiePoza <
-        variantePoza.length
-      ) {
-
-        poza.src =
-          variantePoza[
-            pozitiePoza
-          ];
-
-      }
-
-    };
+  loadReviews();
 
 
   /* SERVICII WHATSAPP */
 
-  function solicitaServiciu(
+  function solicita(
     serviciu,
     pret
   ) {
 
     const text =
-
       "Bună ziua, doresc să solicit un serviciu DEP Medical.\n\n" +
-
       "Serviciu: " +
       serviciu +
       "\n" +
-
       "Tarif afișat: " +
       pret +
       "\n\n" +
-
       "Vă rog să mă contactați pentru programare și detalii.";
 
-
-    const link =
-
-      "https://wa.me/40761802133?text=" +
-
-      encodeURIComponent(
-        text
-      );
-
-
     window.open(
-      link,
+      "https://wa.me/40761802133?text=" +
+      encodeURIComponent(text),
       "_blank"
     );
-
   }
 
 
-  /* FORMULAR EVALUARE */
+  /* EVALUARE */
 
-  const formular =
-    document.getElementById(
+  document
+    .getElementById(
       "formular"
+    )
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        const nume =
+          document.getElementById(
+            "nume"
+          ).value;
+
+        const telefon =
+          document.getElementById(
+            "telefon"
+          ).value;
+
+        const localitate =
+          document.getElementById(
+            "localitate"
+          ).value;
+
+        const email =
+          document.getElementById(
+            "emailEvaluare"
+          ).value;
+
+        const mesaj =
+          document.getElementById(
+            "mesaj"
+          ).value;
+
+        const text =
+          "Bună ziua, doresc o evaluare DEP Medical.\n\n" +
+          "Nume: " +
+          nume +
+          "\n" +
+          "Telefon: " +
+          telefon +
+          "\n" +
+          "Localitate: " +
+          localitate +
+          "\n" +
+          "Email: " +
+          (email || "-") +
+          "\n" +
+          "Mesaj: " +
+          (mesaj || "-");
+
+        window.open(
+          "https://wa.me/40761802133?text=" +
+          encodeURIComponent(text),
+          "_blank"
+        );
+      }
     );
 
 
-  formular.addEventListener(
-    "submit",
-    function(event) {
+  /* OFERTĂ PERSONALIZATĂ */
 
-      event.preventDefault();
+  document
+    .getElementById(
+      "ofertaForm"
+    )
+    .addEventListener(
+      "submit",
+      function(event) {
 
+        event.preventDefault();
 
-      const nume =
-        document.getElementById(
-          "nume"
-        ).value;
+        const nume =
+          document.getElementById(
+            "oNume"
+          ).value;
 
+        const telefon =
+          document.getElementById(
+            "oTelefon"
+          ).value;
 
-      const telefon =
-        document.getElementById(
-          "telefon"
-        ).value;
+        const localitate =
+          document.getElementById(
+            "oLocalitate"
+          ).value;
 
+        const vizite =
+          document.getElementById(
+            "oVizite"
+          ).value;
 
-      const localitate =
-        document.getElementById(
-          "localitate"
-        ).value;
+        const nevoi =
+          document.getElementById(
+            "oNevoi"
+          ).value;
 
+        const text =
+          "Bună ziua, doresc o ofertă personalizată DEP Medical.\n\n" +
+          "Nume: " +
+          nume +
+          "\n" +
+          "Telefon: " +
+          telefon +
+          "\n" +
+          "Localitate: " +
+          localitate +
+          "\n" +
+          "Vizite estimate: " +
+          vizite +
+          "\n\n" +
+          "Nevoile beneficiarului:\n" +
+          nevoi;
 
-      const email =
-        document.getElementById(
-          "email"
-        ).value;
-
-
-      const mesaj =
-        document.getElementById(
-          "mesaj"
-        ).value;
-
-
-      const text =
-
-        "Bună ziua, doresc o evaluare DEP Medical.\n\n" +
-
-        "Nume: " +
-        nume +
-        "\n" +
-
-        "Telefon: " +
-        telefon +
-        "\n" +
-
-        "Localitate: " +
-        localitate +
-        "\n" +
-
-        "Email: " +
-        (email || "-") +
-        "\n" +
-
-        "Mesaj: " +
-        (mesaj || "-");
-
-
-      window.open(
-
-        "https://wa.me/40761802133?text=" +
-
-        encodeURIComponent(
-          text
-        ),
-
-        "_blank"
-
-      );
-
-    }
-  );
-
-
-  /* OFERTA PERSONALIZATA */
-
-  const formularOferta =
-    document.getElementById(
-      "formular-oferta"
+        window.open(
+          "https://wa.me/40761802133?text=" +
+          encodeURIComponent(text),
+          "_blank"
+        );
+      }
     );
-
-
-  formularOferta.addEventListener(
-    "submit",
-    function(event) {
-
-      event.preventDefault();
-
-
-      const nume =
-        document.getElementById(
-          "ofertaNume"
-        ).value;
-
-
-      const telefon =
-        document.getElementById(
-          "ofertaTelefon"
-        ).value;
-
-
-      const localitate =
-        document.getElementById(
-          "ofertaLocalitate"
-        ).value;
-
-
-      const vizite =
-        document.getElementById(
-          "ofertaVizite"
-        ).value;
-
-
-      const nevoi =
-        document.getElementById(
-          "ofertaNevoi"
-        ).value;
-
-
-      const text =
-
-        "Bună ziua, doresc o ofertă personalizată DEP Medical.\n\n" +
-
-        "Nume: " +
-        nume +
-        "\n" +
-
-        "Telefon: " +
-        telefon +
-        "\n" +
-
-        "Localitate: " +
-        localitate +
-        "\n" +
-
-        "Vizite estimate: " +
-        vizite +
-        "\n\n" +
-
-        "Nevoile beneficiarului:\n" +
-        nevoi;
-
-
-      window.open(
-
-        "https://wa.me/40761802133?text=" +
-
-        encodeURIComponent(
-          text
-        ),
-
-        "_blank"
-
-      );
-
-    }
-  );
-
 
 </script>
 
