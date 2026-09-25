@@ -14,12 +14,17 @@
 
   <meta
     name="description"
-    content="Perfuzii la domiciliu în București și Ilfov prin DEP Medical. Serviciu pentru adulți, efectuat de personal medical calificat, conform recomandării medicale. Tarif 220 lei."
+    content="Perfuzii la domiciliu în București Sector 1, 2, 3, 4, 5, 6 și Ilfov. Hidratare intravenoasă și administrare tratament perfuzabil la domiciliu, conform recomandării medicale. DEP Medical - 0761 802 133."
   >
 
   <meta
     name="robots"
-    content="index, follow"
+    content="index, follow, max-image-preview:large"
+  >
+
+  <meta
+    name="author"
+    content="DEP Medical"
   >
 
   <link
@@ -33,6 +38,24 @@
     href="favicon-final.jpeg.jpeg"
   >
 
+
+  <!-- OPEN GRAPH -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="ro_RO"
+  >
+
+  <meta
+    property="og:site_name"
+    content="DEP Medical"
+  >
+
   <meta
     property="og:title"
     content="Perfuzii la domiciliu București și Ilfov | DEP Medical"
@@ -40,7 +63,7 @@
 
   <meta
     property="og:description"
-    content="Servicii de perfuzii la domiciliu pentru adulți în București și Ilfov."
+    content="Perfuzii și hidratare intravenoasă la domiciliu pentru adulți în București și Ilfov, conform recomandării medicale."
   >
 
   <meta
@@ -49,17 +72,20 @@
   >
 
   <meta
-    property="og:type"
-    content="website"
+    property="og:image"
+    content="https://depmedical.net/hero-final.png.jpeg"
   >
 
+
+  <!-- STRUCTURED DATA -->
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Perfuzii la domiciliu București și Ilfov",
-    "description": "Serviciu de administrare a perfuziilor la domiciliu pentru adulți, conform recomandării medicale.",
+    "url": "https://depmedical.net/perfuzii-la-domiciliu.html",
+    "description": "Servicii de administrare a perfuziilor la domiciliu pentru adulți în București și Ilfov, conform recomandării medicale.",
     "provider": {
       "@type": "MedicalBusiness",
       "name": "DEP Medical",
@@ -68,14 +94,13 @@
       "email": "depmedical10@gmail.com"
     },
     "areaServed": [
-      {
-        "@type": "City",
-        "name": "București"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Ilfov"
-      }
+      "București Sector 1",
+      "București Sector 2",
+      "București Sector 3",
+      "București Sector 4",
+      "București Sector 5",
+      "București Sector 6",
+      "Ilfov"
     ]
   }
   </script>
@@ -89,24 +114,34 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      color: #17324d;
       background: #f5fafc;
-      line-height: 1.6;
+      color: #17324d;
+      line-height: 1.7;
     }
+
 
     header {
       background: white;
-      padding: 12px 6%;
+      padding: 10px 6%;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
 
     header img {
       height: 80px;
+      display: block;
     }
 
     header a {
@@ -115,111 +150,248 @@
       font-weight: 700;
     }
 
+
     .hero {
+      display: grid;
+      grid-template-columns: 55% 45%;
       background: linear-gradient(135deg, #075c78, #07879b);
       color: white;
-      padding: 80px 7%;
+      min-height: 620px;
     }
 
-    .hero-inner {
-      max-width: 1000px;
-      margin: auto;
+    .hero-text {
+      padding: 80px 10%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
     }
 
-    .hero small {
+    .hero-text small {
       color: #9cf3df;
       font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
     }
 
-    .hero h1 {
-      font-size: 48px;
+    .hero-text h1 {
+      font-size: 52px;
       line-height: 1.1;
-      margin: 15px 0 20px;
+      margin-bottom: 22px;
     }
 
-    .hero p {
-      font-size: 20px;
-      max-width: 800px;
-      color: #e7f7f9;
+    .hero-text p {
+      color: #e8f7f9;
+      font-size: 19px;
+      max-width: 750px;
     }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+    }
+
 
     .btn {
       display: inline-block;
-      margin-top: 25px;
+      align-self: flex-start;
+      margin-top: 24px;
       background: #20cea9;
       color: white;
       text-decoration: none;
-      font-weight: 700;
-      padding: 15px 25px;
+      padding: 15px 24px;
       border-radius: 30px;
+      font-weight: 700;
     }
 
+    .btn:hover {
+      background: #18b995;
+    }
+
+
     section {
-      padding: 65px 7%;
+      padding: 70px 7%;
     }
 
     .wrap {
-      max-width: 1000px;
+      max-width: 1050px;
       margin: auto;
     }
 
     h2 {
-      font-size: 34px;
+      font-size: 36px;
+      line-height: 1.2;
       margin-bottom: 20px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
     }
 
     p {
       margin-bottom: 16px;
     }
 
+    .intro {
+      background: white;
+    }
+
+    .intro p {
+      font-size: 18px;
+      color: #586f7e;
+    }
+
+
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
       margin-top: 30px;
     }
 
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 7px 22px rgba(0,0,0,0.06);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     }
 
     .card h3 {
       color: #087a9d;
-      margin-bottom: 10px;
     }
 
-    .price-box {
+    .card p {
+      color: #5f7584;
+    }
+
+
+    .uses {
       background: #edf8fb;
-      padding: 35px;
-      border-radius: 18px;
-      margin-top: 25px;
     }
 
-    .price {
-      font-size: 38px;
-      font-weight: 800;
+    .use-list {
+      margin-top: 25px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .use-item {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.04);
+    }
+
+    .use-item strong {
       color: #087a9d;
     }
 
-    .faq details {
+
+    .notice {
+      margin-top: 28px;
+      background: #fff8e8;
+      border-left: 5px solid #e6a700;
+      padding: 22px;
+      border-radius: 10px;
+    }
+
+
+    .zones {
       background: white;
-      padding: 18px;
-      margin-bottom: 12px;
+    }
+
+    .zone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .zone {
+      background: #edf8fb;
+      padding: 20px;
+      text-align: center;
+      border-radius: 14px;
+      font-weight: 700;
+      color: #087a9d;
+    }
+
+
+    .price-section {
+      background: #edf8fb;
+    }
+
+    .price-box {
+      background: white;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    }
+
+    .price {
+      font-size: 44px;
+      font-weight: 800;
+      color: #087a9d;
+      margin-bottom: 10px;
+    }
+
+
+    .steps {
+      background: white;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .step {
+      background: #edf8fb;
+      padding: 28px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .number {
+      width: 55px;
+      height: 55px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #20cea9;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+
+    .faq {
+      background: #edf8fb;
+    }
+
+    details {
+      background: white;
+      padding: 19px 22px;
+      margin-bottom: 13px;
       border-radius: 12px;
     }
 
-    .faq summary {
-      font-weight: 700;
+    summary {
       cursor: pointer;
+      font-weight: 700;
     }
 
-    .faq p {
+    details p {
       margin-top: 12px;
       margin-bottom: 0;
+      color: #607582;
     }
+
 
     .contact {
       background: linear-gradient(135deg, #064d69, #087d91);
@@ -228,51 +400,84 @@
     }
 
     .contact p {
-      color: #e3f5f7;
+      color: #dff4f6;
+      font-size: 18px;
     }
+
+    .contact .btn {
+      margin: 10px 5px 0;
+    }
+
 
     footer {
       background: #062f40;
       color: #d0e1e7;
-      padding: 25px;
       text-align: center;
+      padding: 28px;
     }
+
 
     .wa {
       position: fixed;
       right: 22px;
       bottom: 22px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+      width: 62px;
+      height: 62px;
       background: #25d366;
       color: white;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 29px;
       text-decoration: none;
-      font-size: 28px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
 
-    @media(max-width: 800px) {
+
+    @media(max-width: 850px) {
+
+      header {
+        padding: 8px 16px;
+      }
 
       header img {
-        height: 65px;
+        height: 62px;
+      }
+
+      header a {
+        font-size: 14px;
       }
 
       .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
         padding: 55px 22px;
       }
 
-      .hero h1 {
-        font-size: 38px;
+      .hero-text h1 {
+        font-size: 40px;
+      }
+
+      .hero-image img {
+        min-height: 350px;
+        height: 350px;
       }
 
       section {
-        padding: 50px 22px;
+        padding: 55px 20px;
       }
 
-      .cards {
+      h2 {
+        font-size: 30px;
+      }
+
+      .cards,
+      .zone-grid,
+      .step-grid {
         grid-template-columns: 1fr;
       }
 
@@ -298,7 +503,7 @@
   </a>
 
   <a href="https://depmedical.net/">
-    ← Înapoi la pagina principală
+    ← Pagina principală
   </a>
 
 </header>
@@ -310,7 +515,7 @@
 
 <section class="hero">
 
-  <div class="hero-inner">
+  <div class="hero-text">
 
     <small>
       DEP MEDICAL • BUCUREȘTI ȘI ILFOV
@@ -321,17 +526,28 @@
     </h1>
 
     <p>
-      DEP Medical oferă servicii de administrare a perfuziilor
-      la domiciliu pentru adulți, efectuate de personal medical
-      calificat, conform recomandării medicale.
+      Administrare perfuzii și tratamente perfuzabile la domiciliu
+      pentru adulți, realizate de personal medical calificat,
+      conform recomandării medicale.
     </p>
 
     <a
       class="btn"
       href="https://wa.me/40761802133?text=Buna%20ziua%2C%20doresc%20informatii%20despre%20perfuzii%20la%20domiciliu."
+      target="_blank"
     >
       Solicită o perfuzie pe WhatsApp
     </a>
+
+  </div>
+
+
+  <div class="hero-image">
+
+    <img
+      src="hero-final.png.jpeg"
+      alt="Perfuzii la domiciliu în București și Ilfov"
+    >
 
   </div>
 
@@ -339,68 +555,195 @@
 
 
 
-<section>
+<section class="intro">
 
   <div class="wrap">
 
     <h2>
-      Perfuzie administrată în confortul propriei locuințe
+      Administrare perfuzii direct la domiciliu
     </h2>
 
     <p>
-      Pentru persoanele care au o recomandare medicală și au nevoie
-      de administrarea unui tratament perfuzabil, DEP Medical poate
-      asigura serviciul direct la domiciliu în București și Ilfov.
+      DEP Medical oferă servicii de perfuzii la domiciliu
+      pentru adulți din București și Ilfov.
+      Serviciul este destinat persoanelor care au o recomandare
+      medicală pentru administrarea intravenoasă a unei soluții
+      sau a unui tratament și pentru care procedura poate fi
+      efectuată în condiții adecvate la domiciliu.
     </p>
 
     <p>
-      Înainte de programare sunt necesare informații despre tratamentul
-      recomandat și situația beneficiarului, pentru a stabili dacă
-      serviciul poate fi efectuat în condiții potrivite la domiciliu.
+      Administrarea la domiciliu poate reduce necesitatea deplasării
+      beneficiarului la o clinică și poate fi mai confortabilă
+      pentru persoanele vârstnice sau cu mobilitate redusă.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<section class="uses">
+
+  <div class="wrap">
+
+    <h2>
+      La ce pot fi utile perfuziile la domiciliu?
+    </h2>
+
+    <p>
+      Tipul soluției perfuzabile și necesitatea administrării
+      intravenoase sunt stabilite de medic.
+      În funcție de indicația medicală, perfuziile pot fi utilizate
+      pentru administrarea intravenoasă de lichide, electroliți,
+      anumite medicamente sau alte soluții prescrise.
     </p>
 
 
-    <div class="cards">
+    <div class="use-list">
 
-      <div class="card">
 
-        <h3>
-          Personal medical calificat
-        </h3>
+      <div class="use-item">
+
+        <strong>
+          Hidratare intravenoasă la domiciliu
+        </strong>
 
         <p>
-          Procedura este efectuată de personal medical calificat,
-          cu atenție și responsabilitate.
+          Administrarea intravenoasă de lichide poate fi recomandată
+          de medic în anumite situații în care este necesară
+          suplimentarea aportului de lichide și administrarea orală
+          nu este suficientă sau nu este potrivită.
         </p>
 
       </div>
 
 
-      <div class="card">
+      <div class="use-item">
 
-        <h3>
-          La domiciliu
-        </h3>
+        <strong>
+          Administrarea unui tratament prescris
+        </strong>
 
         <p>
-          Beneficiarul nu trebuie să se deplaseze pentru administrarea
-          tratamentului atunci când acesta poate fi realizat la domiciliu.
+          Unele medicamente sau tratamente prescrise de medic
+          pot necesita administrare intravenoasă prin perfuzie.
         </p>
 
       </div>
 
 
-      <div class="card">
+      <div class="use-item">
 
-        <h3>
-          București și Ilfov
-        </h3>
+        <strong>
+          Administrarea electroliților
+        </strong>
 
         <p>
-          Serviciul este disponibil pentru beneficiarii aflați
-          în București și în localități din județul Ilfov.
+          În anumite situații, medicul poate recomanda administrarea
+          unor soluții care conțin electroliți, în funcție de
+          necesitățile pacientului și de evaluarea medicală.
         </p>
 
+      </div>
+
+
+      <div class="use-item">
+
+        <strong>
+          Continuarea unui tratament la domiciliu
+        </strong>
+
+        <p>
+          Atunci când medicul recomandă continuarea unui tratament
+          perfuzabil și starea pacientului permite acest lucru,
+          administrarea poate fi realizată la domiciliu.
+        </p>
+
+      </div>
+
+
+      <div class="use-item">
+
+        <strong>
+          Administrarea vitaminelor sau altor soluții prescrise
+        </strong>
+
+        <p>
+          Vitaminele sau alte soluții perfuzabile se administrează
+          intravenos numai atunci când există o indicație medicală
+          și o schemă de tratament clară.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="notice">
+
+      <strong>
+        Important:
+      </strong>
+
+      perfuziile nu se administrează fără recomandare medicală.
+      Schema de tratament, medicamentul, soluția, doza și ritmul
+      administrării trebuie stabilite de medic.
+      Pentru simptome severe sau o urgență medicală trebuie solicitat
+      serviciul medical de urgență 112.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section class="zones">
+
+  <div class="wrap">
+
+    <h2>
+      Perfuzii la domiciliu în toate sectoarele Bucureștiului
+    </h2>
+
+    <p>
+      DEP Medical oferă servicii de administrare a perfuziilor
+      la domiciliu în București și Ilfov, în funcție de programare
+      și disponibilitate.
+    </p>
+
+
+    <div class="zone-grid">
+
+      <div class="zone">
+        Perfuzii la domiciliu Sector 1
+      </div>
+
+      <div class="zone">
+        Perfuzii la domiciliu Sector 2
+      </div>
+
+      <div class="zone">
+        Perfuzii la domiciliu Sector 3
+      </div>
+
+      <div class="zone">
+        Perfuzii la domiciliu Sector 4
+      </div>
+
+      <div class="zone">
+        Perfuzii la domiciliu Sector 5
+      </div>
+
+      <div class="zone">
+        Perfuzii la domiciliu Sector 6
+      </div>
+
+      <div class="zone">
+        Perfuzii la domiciliu Ilfov
       </div>
 
     </div>
@@ -411,7 +754,7 @@
 
 
 
-<section style="background:white">
+<section class="price-section">
 
   <div class="wrap">
 
@@ -426,21 +769,27 @@
         220 lei
       </div>
 
+      <h3>
+        Cură perfuzabilă la domiciliu
+      </h3>
+
       <p>
-        Cura perfuzabilă la domiciliu.
+        Materialele necesare efectuării procedurii sunt incluse,
+        cu excepția medicamentelor și a materialelor prescrise
+        pentru tratamentul beneficiarului.
       </p>
 
       <p>
-        Materialele necesare procedurii sunt incluse,
-        cu excepția medicamentelor și materialelor
-        prescrise pentru tratament.
+        Pentru confirmarea programării sunt necesare informații
+        despre tratamentul recomandat și localitatea beneficiarului.
       </p>
+
 
       <a
         class="btn"
         href="tel:+40761802133"
       >
-        Sună la 0761 802 133
+        Sună: 0761 802 133
       </a>
 
     </div>
@@ -451,53 +800,67 @@
 
 
 
-<section>
+<section class="steps">
 
   <div class="wrap">
 
     <h2>
-      Cum programezi o perfuzie la domiciliu
+      Cum programezi o perfuzie la domiciliu?
     </h2>
 
-    <div class="cards">
 
-      <div class="card">
+    <div class="step-grid">
+
+
+      <div class="step">
+
+        <div class="number">
+          1
+        </div>
 
         <h3>
-          1. Ne contactezi
+          Ne contactezi
         </h3>
 
         <p>
-          Ne suni sau ne scrii pe WhatsApp și ne comunici
-          localitatea și tratamentul recomandat.
+          Ne suni sau ne scrii pe WhatsApp
+          și ne spui localitatea beneficiarului.
         </p>
 
       </div>
 
 
-      <div class="card">
+      <div class="step">
+
+        <div class="number">
+          2
+        </div>
 
         <h3>
-          2. Verificăm detaliile
+          Verificăm recomandarea
         </h3>
 
         <p>
-          Discutăm informațiile necesare pentru programarea
-          în condiții potrivite.
+          Comunicăm detaliile tratamentului prescris
+          și informațiile necesare programării.
         </p>
 
       </div>
 
 
-      <div class="card">
+      <div class="step">
+
+        <div class="number">
+          3
+        </div>
 
         <h3>
-          3. Stabilim vizita
+          Stabilim vizita
         </h3>
 
         <p>
-          Stabilim data și intervalul pentru vizita
-          la domiciliul beneficiarului.
+          Stabilim ziua și intervalul pentru
+          administrarea perfuziei la domiciliu.
         </p>
 
       </div>
@@ -510,10 +873,7 @@
 
 
 
-<section
-  class="faq"
-  style="background:white"
->
+<section class="faq">
 
   <div class="wrap">
 
@@ -529,8 +889,9 @@
       </summary>
 
       <p>
-        Da. DEP Medical oferă servicii de perfuzii
-        la domiciliu în București.
+        Da. DEP Medical oferă servicii de perfuzii la domiciliu
+        în toate cele șase sectoare ale Bucureștiului,
+        în funcție de disponibilitate și programare.
       </p>
 
     </details>
@@ -539,12 +900,12 @@
     <details>
 
       <summary>
-        Oferiți perfuzii la domiciliu și în Ilfov?
+        Oferiți perfuzii la domiciliu în Ilfov?
       </summary>
 
       <p>
-        Da. Serviciile sunt disponibile și în Ilfov,
-        în funcție de localitate și programare.
+        Da. Serviciul este disponibil și în localități din Ilfov,
+        în funcție de zonă și programare.
       </p>
 
     </details>
@@ -553,12 +914,27 @@
     <details>
 
       <summary>
-        Este necesară recomandare medicală?
+        Se poate face hidratare intravenoasă la domiciliu?
       </summary>
 
       <p>
-        Tratamentul perfuzabil trebuie administrat conform
-        indicației și recomandării medicale.
+        O soluție perfuzabilă pentru hidratare poate fi administrată
+        la domiciliu atunci când există o indicație medicală
+        și procedura este potrivită situației beneficiarului.
+      </p>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        Pot solicita singur o perfuzie fără recomandare medicală?
+      </summary>
+
+      <p>
+        Nu. Tipul soluției, doza și schema de administrare
+        trebuie stabilite de medic.
       </p>
 
     </details>
@@ -571,8 +947,8 @@
       </summary>
 
       <p>
-        Tariful afișat pentru cura perfuzabilă la domiciliu
-        este de 220 lei.
+        Tariful DEP Medical afișat pentru cura perfuzabilă
+        la domiciliu este de 220 lei.
       </p>
 
     </details>
@@ -585,8 +961,37 @@
       </summary>
 
       <p>
-        Programarea se poate solicita telefonic la 0761 802 133
-        sau prin WhatsApp.
+        Poți suna la 0761 802 133 sau poți trimite
+        un mesaj pe WhatsApp pentru detalii și programare.
+      </p>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        Faceți perfuzii pentru adulți?
+      </summary>
+
+      <p>
+        Da. Serviciile DEP Medical prezentate pe această pagină
+        sunt destinate adulților.
+      </p>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        Ce fac dacă pacientul se simte foarte rău?
+      </summary>
+
+      <p>
+        Dacă există simptome severe, pierderea stării de conștiență,
+        dificultăți de respirație, durere toracică sau altă posibilă
+        urgență medicală, trebuie apelat serviciul 112.
       </p>
 
     </details>
@@ -602,22 +1007,23 @@
   <div class="wrap">
 
     <h2>
-      Solicită perfuzii la domiciliu
+      Programează o perfuzie la domiciliu
     </h2>
 
     <p>
-      Contactează DEP Medical pentru programări
+      Contactează DEP Medical pentru informații și programări
       în București și Ilfov.
     </p>
+
 
     <a
       class="btn"
       href="https://wa.me/40761802133?text=Buna%20ziua%2C%20doresc%20sa%20programez%20o%20perfuzie%20la%20domiciliu."
+      target="_blank"
     >
-      WhatsApp
+      Scrie pe WhatsApp
     </a>
 
-    <br>
 
     <a
       class="btn"
@@ -637,7 +1043,7 @@
 
 <footer>
 
-  © 2026 DEP Medical • Îngrijiri medicale la domiciliu București și Ilfov
+  © 2026 DEP Medical • Perfuzii și îngrijiri medicale la domiciliu în București și Ilfov
 
 </footer>
 
