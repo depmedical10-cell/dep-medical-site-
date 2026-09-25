@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://depmedical.net/sitemap.xml
